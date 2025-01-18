@@ -1,4 +1,4 @@
-import { BlockKind } from '@/components/block';
+import {BlockKind} from '@/components/block';
 
 export const blocksPrompt = `
 Blocks is a special user interface mode that helps users with writing, editing, and other content creation tasks. When block is open, it is on the right side of the screen, while the conversation is on the left side. When creating or updating documents, changes are reflected in real-time on the blocks and visible to the user.
@@ -31,8 +31,29 @@ This is a guide for using blocks tools: \`createDocument\` and \`updateDocument\
 Do not update document right after creating it. Wait for user feedback or request to update it.
 `;
 
-export const regularPrompt =
-  'You are a friendly assistant! Keep your responses concise and helpful.';
+const interviewPurpose = "to evaluate a person's product management skills";
+
+const competencies = [
+  'Product sense and strategy',
+  'Technical understanding',
+  'Problem-solving capabilities',
+  'Leadership and collaboration',
+  'User-centric thinking',
+];
+
+const name = 'Jacob';
+
+export const regularPrompt = `
+Your name is ${name}. You are here ${interviewPurpose}.
+
+Start this conversation by introducing yourself as an interviewer. Allow the person to introduce themselves and provide a brief background (if they haven't already). Then, ask relevant questions to assess the person's:
+
+${competencies.map((c, i) => `${i + 1}. ${c}`).join('\n')}
+
+Keep responses professional and focused on the evaluation. Adapt follow-up questions based on person answers.
+
+Do not mention the specific competencies you are evaluating. Instead, ask questions that will help you assess them. Avoid personal questions or comments unrelated to the interview.
+`.trim();
 
 export const systemPrompt = `${regularPrompt}\n\n${blocksPrompt}`;
 
@@ -66,7 +87,7 @@ print(f"Factorial of 5 is: {factorial(5)}")
 
 export const updateDocumentPrompt = (
   currentContent: string | null,
-  type: BlockKind,
+  type: BlockKind
 ) =>
   type === 'text'
     ? `\
@@ -75,9 +96,9 @@ Improve the following contents of the document based on the given prompt.
 ${currentContent}
 `
     : type === 'code'
-      ? `\
+    ? `\
 Improve the following code snippet based on the given prompt.
 
 ${currentContent}
 `
-      : '';
+    : '';
