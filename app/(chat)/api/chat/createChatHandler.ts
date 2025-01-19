@@ -37,15 +37,9 @@ type AllowedTools =
   | 'requestSuggestions'
   | 'getWeather';
 
-const blocksTools: AllowedTools[] = [
-  'createDocument',
-  'updateDocument',
-  'requestSuggestions',
-];
-
 const weatherTools: AllowedTools[] = ['getWeather'];
 
-const allTools: AllowedTools[] = [...blocksTools, ...weatherTools];
+const allTools: AllowedTools[] = weatherTools;
 
 interface ChatHandlerOption {
   codePrompt: string;
