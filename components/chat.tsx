@@ -13,11 +13,13 @@ import {MultimodalInput} from './multimodal-input';
 import {Messages} from './messages';
 import {VisibilityType} from './visibility-selector';
 import {useBlockSelector} from '@/hooks/use-block';
+import { ChatHeader } from './chat-header';
 
 export function Chat({
   id,
   initialMessages,
   selectedModelId,
+  selectedVisibilityType,
   isReadonly,
 }: {
   id: string;
@@ -56,6 +58,13 @@ export function Chat({
   return (
     <>
       <div className="flex flex-col min-w-0 h-dvh bg-background">
+        <ChatHeader
+          chatId={id}
+          selectedModelId={selectedModelId}
+          selectedVisibilityType={selectedVisibilityType}
+          isReadonly={isReadonly}
+        />
+
         <Messages
           chatId={id}
           isLoading={isLoading}
